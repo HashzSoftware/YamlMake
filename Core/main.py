@@ -11,6 +11,8 @@ from Types.argument_error import ArgumentError
 from Types.arg_not_found import ArgNotFound
 from Types.item_not_found import ItemNotFound
 
+from YamlCore import builder
+
 manual_set_build = None
 
 # Only called if there are any command line arguments
@@ -54,3 +56,6 @@ def main():
 main()
 
 # Continue with build
+builder.initialize(manual_set_build) if manual_set_build\
+    else builder.initialize("build.yaml")\
+    if os.path.exists("build.yaml") else ItemNotFound("build.yaml")
