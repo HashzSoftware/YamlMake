@@ -10,6 +10,9 @@ from YamlCore.store import Store
 
 import Builder.compiler as compiler
 
+import Config.include_path as include_path
+import Config.libraries as libraries
+
 def initialize(file):
 
     print("Reading YAML configuration...")
@@ -42,6 +45,12 @@ def initialize(file):
 
             if "verbose" in value:
                 _store.add("verbose", value["verbose"])
+            
+            if "include" in value:
+                include_path._add_include_path(value["include"])
+
+            if "library" in value:
+                libraries._add_lib(value["library"])
 
 
         if key == "build":

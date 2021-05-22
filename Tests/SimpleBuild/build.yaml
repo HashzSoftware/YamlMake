@@ -4,8 +4,5 @@ init:
   verbose: yes
 
 build:
-  objects:
-    main.obj: main.cpp
   link:
-    main.exe: main.obj
-  
+    main.exe: main.cpp

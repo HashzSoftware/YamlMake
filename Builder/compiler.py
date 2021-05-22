@@ -4,13 +4,16 @@ import sys
 
 sys.path.insert(1, "..")
 
+import Config.include_path as include_path
+import Config.libraries as libraries
+
 def start(p_objects, p_cmdline_store):
     
     # Compile objects
     for obj in p_objects:
 
         # Evaluated: eg: g++ -c -Wall -o test.obj test.cpp
-        command = "%s %s -o %s %s" % (p_cmdline_store.get("compiler"), p_cmdline_store.get("object"), obj, p_objects[obj])
+        command = "%s %s %s -o %s %s" % (p_cmdline_store.get("compiler"), p_cmdline_store.get("object"), include_path._get_include_path(), obj, p_objects[obj])
 
         if p_cmdline_store.get("verbose"):
             print(command)
@@ -21,7 +24,7 @@ def start(p_objects, p_cmdline_store):
 def link(p_output, p_objects, p_cmdline_store):
 
     # Evaluated: eg: g++ -o test.exe test.obj
-    command = "%s -o %s %s" % (p_cmdline_store.get("compiler"), p_output, p_objects)
+    command = "%s %s -o %s %s" % (p_cmdline_store.get("compiler"), libraries._get_libs(), p_output, p_objects)
 
     if p_cmdline_store.get("verbose"):
         print(command)

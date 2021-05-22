@@ -3,7 +3,9 @@
 init:
   compiler: g++
   object: -c -Wall
-  verbose: off
+  verbose: on
+  include: Core
+  library: glfw3.lib
 
 build:
   objects:
