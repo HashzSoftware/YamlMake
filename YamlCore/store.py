@@ -13,7 +13,7 @@ class Store:
     def add(self, k, v):
         self.shelf[k] = v
     
-    def get(self, k, v):
+    def get(self, k):
         
         if not k in self.shelf:
             ItemNotFound(k)

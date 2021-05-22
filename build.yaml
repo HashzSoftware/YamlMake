@@ -3,6 +3,7 @@
 init:
   compiler: g++
   object: -c -Wall
+  verbose: off
 
 build:
   objects:

@@ -6,9 +6,9 @@ import yaml
 sys.path.insert(1, "..")
 
 from Types.item_not_found import ItemNotFound
-
 from YamlCore.store import Store
-from YamlCore.objects import Objects
+
+import Builder.compiler as compiler
 
 def initialize(file):
 
@@ -19,19 +19,27 @@ def initialize(file):
         build = yaml.full_load(f)
     
     _store = Store()
+    _objects = {}
 
     for attr in build:
         key, value = attr, build[attr]
 
         # Initialization section
         if key == "init":
+
             if "compiler" in value:
                 print("Using compiler toolset: %s" % value["compiler"])
                 _store.add("compiler", value["compiler"])
+
             if "object" in value:
                 _store.add("object", value["object"])
+
             if "link" in value:
                 _store.add("link", value["link"])
+
+            if "verbose" in value:
+                _store.add("verbose", value["verbose"])
+
 
         if key == "build":
             if "objects" in value:
@@ -41,7 +49,18 @@ def initialize(file):
 
                 # LOOKING FOR IMRPOVEMENT: retrieve the source file (format: 'foo.obj: `foo.cpp`')
                 src = value["objects"][list(value["objects"].keys())[0]]
+
+                _objects[obj] = src
     
+
+    # Begin build
+    print("Starting build...")
+
     # Check mandatory keys
-    print(_store.shelf)
+    if not "compiler" in _store.shelf:
+        ItemNotFound("No set compiler was found.")
+        quit()
+    
+    compiler.start(_objects, _store)
+
     
