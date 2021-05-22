@@ -1,10 +1,11 @@
 init:
-  compiler: g++
+  compiler: clang++
   object: -c -Wall
-  verbose: on
+  verbose: yes
 
 build:
   objects:
     main.obj: main.cpp
   link:
     main.exe: main.obj
+  

@@ -8,3 +8,5 @@ init:
 build:
   objects:
     test.obj: test.cpp
+  link:
+    test.exe: test.obj

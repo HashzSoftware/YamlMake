@@ -21,6 +21,9 @@ def initialize(file):
     _store = Store()
     _objects = {}
 
+    _output = ""
+    _link_objects = ""
+
     for attr in build:
         key, value = attr, build[attr]
 
@@ -51,7 +54,15 @@ def initialize(file):
                 src = value["objects"][list(value["objects"].keys())[0]]
 
                 _objects[obj] = src
-    
+            
+            if "link" in value:
+
+                # Get the output name
+                output = next(iter(value["link"]))
+                objects = value["link"][output]
+
+                _output = output
+                _link_objects = objects
 
     # Begin build
     print("Starting build...")
@@ -62,5 +73,4 @@ def initialize(file):
         quit()
     
     compiler.start(_objects, _store)
-
-    
+    compiler.link(_output, _link_objects, _store)    
