@@ -10,5 +10,6 @@ init:
 build:
   objects:
     test.obj: test.cpp
+    test2.obj: test2.cpp
   link:
     test.exe: test.obj

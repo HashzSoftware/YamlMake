@@ -28,6 +28,7 @@ def initialize(file):
     _link_objects = ""
 
     for attr in build:
+
         key, value = attr, build[attr]
 
         # Initialization section
@@ -56,13 +57,9 @@ def initialize(file):
         if key == "build":
             if "objects" in value:
 
-                # Will retrieve the key name for the object (AKA: the object)
-                obj = next(iter(value["objects"]))
-
-                # LOOKING FOR IMRPOVEMENT: retrieve the source file (format: 'foo.obj: `foo.cpp`')
-                src = value["objects"][list(value["objects"].keys())[0]]
-
-                _objects[obj] = src
+                # Loop through all possible objects
+                for p_obj in value["objects"]:
+                    _objects[p_obj] = value["objects"][p_obj]
             
             if "link" in value:
 

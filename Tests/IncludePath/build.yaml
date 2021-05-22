@@ -1,0 +1,11 @@
+init:
+  compiler: g++
+  verbose: on
+  include: include/
+  object: -c -Wall
+
+build:
+  objects:
+    src/main.obj: src/main.cpp
+  link:
+    program.exe: src/main.obj
