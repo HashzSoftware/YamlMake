@@ -7,6 +7,9 @@ from Types.item_not_found import ItemNotFound
 class Store:
     shelf = {}
 
+    def __init__(self):
+        pass
+
     def add(self, k, v):
         self.shelf[k] = v
     

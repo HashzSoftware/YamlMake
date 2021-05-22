@@ -2,3 +2,8 @@
 
 init:
   compiler: g++
+  object: -c -Wall
+
+build:
+  objects:
+    test.obj: test.cpp
