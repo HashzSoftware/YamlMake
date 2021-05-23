@@ -1,4 +1,5 @@
 # Copyright (c) 2021 Hashz Software.
+import os
 import sys
 import yaml
 
@@ -22,6 +23,7 @@ def initialize(file):
     
     _store = Store()
     _objects = {}
+    _libraries = {}
 
     _output = ""
     _link_objects = ""
@@ -51,6 +53,9 @@ def initialize(file):
 
             if "library" in value:
                 libraries._add_lib(value["library"])
+            
+            if "command" in value:
+                os.system(value["command"])
 
 
         if key == "build":
@@ -68,6 +73,14 @@ def initialize(file):
 
                 _output = output
                 _link_objects = objects
+
+            if "libraries" in value:
+
+                # Loop through all possible libraries
+                for p_lib in value["libraries"]:
+                    _libraries[p_lib] = value["libraries"][p_lib]
+
+
 
     # Begin build
     print("Starting build...")
