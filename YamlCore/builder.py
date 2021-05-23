@@ -1,5 +1,4 @@
 # Copyright (c) 2021 Hashz Software.
-import os
 import sys
 import yaml
 
@@ -76,7 +75,7 @@ def initialize(file):
     # Check mandatory keys
     if not "compiler" in _store.shelf:
         ItemNotFound("No set compiler was found.")
-        quit()
+        sys.exit()
     
     compiler.start(_objects, _store)
     compiler.link(_output, _link_objects, _store)    

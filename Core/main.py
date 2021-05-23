@@ -36,7 +36,7 @@ def main():
                 # If no new file is supplied
                 if not len(sys.argv) > l_arg + 1:
                     ArgNotFound("Expected an argument after '-F'.")
-                    quit()
+                    sys.exit()
                 
                 if not os.path.exists(sys.argv[l_arg + 1]):
                     ItemNotFound(sys.argv[l_arg + 1])
@@ -49,9 +49,9 @@ def main():
             # Only throw `ArgumentError` if the l_arg position has already iterated through sys.argv[0] (the executable command)
             elif l_arg > 0:
                 ArgumentError(real_arg)
-                quit()
+                sys.exit()
 
-        quit()
+        sys.exit()
 
 main()
 
