@@ -1,0 +1,1 @@
+void Print(const char* msg);
