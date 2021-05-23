@@ -3,6 +3,8 @@ init:
   object: -c -Wall
   verbose: yes
 
+  command: mkdir bin
+
 build:
   link:
-    main.exe: main.cpp
+    bin/main.exe: main.cpp

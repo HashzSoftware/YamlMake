@@ -55,7 +55,14 @@ def initialize(file):
                 libraries._add_lib(value["library"])
             
             if "command" in value:
-                os.system(value["command"])
+                
+                command = value["command"]
+                
+                if _store.get("verbose"):
+                    print(command)
+                    
+                os.system(command)
+
 
 
         if key == "build":
